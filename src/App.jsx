@@ -12,6 +12,7 @@ function InvitationContent() {
   const [allowsPartner, setAllowsPartner] = useState(true);
   const [loading, setLoading] = useState(true);
   const [config, setConfig] = useState(null);
+  const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false);
 
   useEffect(() => {
     async function fetchGuest() {
@@ -83,32 +84,79 @@ function InvitationContent() {
 
       {!loading && (
         <div className="content-wrapper">
-          <motion.div
-            className="glass-card"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: 'easeOut' }}
-          >
-            <h1 className="title-accent" style={{ fontSize: '4.2rem', marginTop: '10px' }}>¡Me caso!</h1>
+          <div className={`invitation-stage ${isEnvelopeOpen ? 'is-open' : ''}`}>
+            <div className={`invitation-reveal ${isEnvelopeOpen ? 'is-open' : ''}`} aria-hidden={!isEnvelopeOpen}>
+              <div className="invitation-card">
+                <div className="invitation-scroll">
+                  {isEnvelopeOpen && (
+                    <button
+                      type="button"
+                      className="invitation-close"
+                      onClick={() => setIsEnvelopeOpen(false)}
+                      aria-label="Cerrar invitación"
+                    >
+                      Cerrar
+                    </button>
+                  )}
 
-            <p className="text-body" style={{ margin: '15px 0', fontSize: '1.2rem' }}>
-              Steven y yo hemos decidido dar el gran paso...<br />
-            </p>
+                  <h1 className="title-accent" style={{ fontSize: '4.2rem', marginTop: '10px' }}>¡Me caso!</h1>
 
-            <p className="text-body" style={{ margin: '25px 0' }}>
-              <strong style={{ fontSize: '1.7rem', color: 'var(--color-primary)', fontFamily: 'var(--font-title)' }}>{guestName}</strong>
-            </p>
+                  <p className="text-body invitation-intro" style={{ margin: '15px auto 0', fontSize: '1.2rem' }}>
+                    Steven y yo hemos decidido dar el gran paso...
+                  </p>
 
-            {config?.mostrarEvento !== false && (
-              <div className="text-body" style={{ margin: '25px 0', borderTop: '1px solid rgba(155,89,182,0.2)', borderBottom: '1px solid rgba(155,89,182,0.2)', padding: '20px 0' }}>
-                <strong style={{ fontSize: '1.1rem', color: 'var(--color-text-main)' }}>{config?.fecha || 'Sábado, 1 de Agosto 2026'}</strong><br />
-                <span style={{ display: 'block', margin: '8px 0' }}>{config?.lugar || 'Iglesia Católica Santo Tomás Moro'}</span>
-                {config?.hora || '18:00 hrs'}
+                  <p className="text-body invitation-guest" style={{ margin: '25px 0' }}>
+                    <strong style={{ fontSize: '1.7rem', color: 'var(--color-primary)', fontFamily: 'var(--font-title)' }}>{guestName}</strong>
+                  </p>
+
+                  {config?.mostrarEvento !== false && (
+                    <div className="event-details text-body">
+                      <strong className="event-line" style={{ fontSize: '1.1rem', color: 'var(--color-text-main)' }}>
+                        <span aria-hidden="true">📅</span>
+                        {config?.fecha || 'Sábado, 1 de Agosto 2026'}
+                      </strong>
+                      <span className="event-line">
+                        <span aria-hidden="true">⛪</span>
+                        {config?.lugar || 'Iglesia Católica Santo Tomás Moro'}
+                      </span>
+                      <span className="event-line">
+                        <span aria-hidden="true">🕕</span>
+                        {config?.hora || '18:00 hrs'}
+                      </span>
+                    </div>
+                  )}
+
+                  <RSVPForm allowsPartner={allowsPartner} guestId={guestId} guestName={guestName} />
+                </div>
               </div>
-            )}
+            </div>
 
-            <RSVPForm allowsPartner={allowsPartner} guestId={guestId} guestName={guestName} />
-          </motion.div>
+            <div className={`envelope-shell ${isEnvelopeOpen ? 'is-open' : ''}`}>
+              <div className="envelope-glow" aria-hidden="true"></div>
+              <div className="envelope-back" aria-hidden="true"></div>
+              <div className="envelope-flap" aria-hidden="true"></div>
+              <div className="envelope-front" aria-hidden="true">
+                <span className="envelope-seal">S</span>
+              </div>
+              {!isEnvelopeOpen && (
+                <div className="envelope-message" aria-hidden="true">
+                  <strong>Haz clic para abrir la invitación</strong>
+                </div>
+              )}
+
+              {!isEnvelopeOpen && (
+                <button
+                  type="button"
+                  className="envelope-trigger"
+                  onClick={() => setIsEnvelopeOpen(true)}
+                  aria-expanded={isEnvelopeOpen}
+                  aria-label="Abrir invitación"
+                >
+                  Abrir invitación
+                </button>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </>

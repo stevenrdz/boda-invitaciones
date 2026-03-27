@@ -166,7 +166,8 @@ export default function RSVPForm({ allowsPartner, guestId, guestName, onConfirm 
                             <input
                                 type="tel"
                                 className="form-input"
-                                placeholder="Ej. +52 555 123 4567"
+                                inputMode="tel"
+                                placeholder="Ej. 099 123 4567"
                                 required
                                 value={partnerDetails.phone}
                                 onChange={(e) => setPartnerDetails({ ...partnerDetails, phone: e.target.value })}
