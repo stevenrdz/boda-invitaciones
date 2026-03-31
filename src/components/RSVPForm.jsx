@@ -83,11 +83,12 @@ export default function RSVPForm({ allowsPartner, guestId, onConfirm }) {
                         transition={{ duration: 0.3 }}
                         style={{ width: '100%' }}
                     >
-                        <p className="text-body" style={{ fontSize: '1.15rem', marginBottom: '30px' }}>
-                            Eres muy especial para mí y no imagino este día sin ti a mi lado...
+                        <p className="text-body invitation-question-copy" style={{ fontSize: '1.12rem', marginBottom: '22px' }}>
+                            Este d&#237;a ser&#225; uno de los m&#225;s importantes de mi vida, y no podr&#237;a imaginarlo sin alguien tan especial como t&#250; acompa&#241;&#225;ndome. Porque eres parte de mi historia, de mis recuerdos y de mi coraz&#243;n... Por eso quiero preguntarte algo muy especial:
                         </p>
-                        <h3 className="title-main" style={{ fontSize: '1.6rem', marginBottom: '25px', color: 'var(--color-primary)' }}>
-                            ¿Aceptas ser mi Dama de Honor?
+
+                        <h3 className="title-main" style={{ fontSize: '1.5rem', marginBottom: '25px', color: 'var(--color-primary)' }}>
+                            &#191;Aceptas ser mi Dama de Honor y estar a mi lado en este d&#237;a tan importante?
                         </h3>
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                             <button onClick={handleAccept} className="btn-primary">

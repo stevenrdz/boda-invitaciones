@@ -291,7 +291,7 @@ body {
   position: relative;
   z-index: 1;
   padding: 44px 34px 36px;
-  max-height: 620px;
+  max-height: 700px;
   overflow-y: auto;
 }
 
@@ -321,10 +321,31 @@ body {
   opacity: 1;
 }
 
-.invitation-intro {
-  max-width: 360px;
+.invitation-lead,
+.invitation-note,
+.invitation-question-copy {
+  max-width: 390px;
   margin-inline: auto;
   text-align: center;
+  text-wrap: balance;
+}
+
+.invitation-lead strong,
+.invitation-note strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.invitation-intro {
+  max-width: 390px;
+  margin-inline: auto;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.invitation-guest {
+  max-width: 390px;
+  margin-inline: auto;
 }
 
 .invitation-guest strong {
@@ -407,7 +428,7 @@ body {
 
   .invitation-scroll {
     padding: 42px 22px 28px;
-    max-height: 520px;
+    max-height: 600px;
   }
 
   .title-accent {

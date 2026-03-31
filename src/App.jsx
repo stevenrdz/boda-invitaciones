@@ -128,30 +128,40 @@ function InvitationContent() {
 
                   <h1 className="title-accent" style={{ fontSize: '4.2rem', marginTop: '10px' }}>¡Me caso!</h1>
 
-                  <p className="text-body invitation-intro" style={{ margin: '15px auto 0', fontSize: '1.2rem' }}>
-                    Steven y yo hemos decidido dar el gran paso...
+                  <p className="text-body invitation-lead" style={{ margin: '18px auto 0', fontSize: '1.18rem' }}>
+                    <strong>Una nueva etapa est&#225; por comenzar</strong>
                   </p>
 
-                  <p className="text-body invitation-guest" style={{ margin: '25px 0' }}>
-                    <strong style={{ fontSize: '1.7rem', color: 'var(--color-primary)', fontFamily: 'var(--font-title)' }}>{guestName}</strong>
+                  <p className="text-body invitation-intro" style={{ margin: '12px auto 0', fontSize: '1.15rem' }}>
+                    Despu&#233;s de tantas historias, sue&#241;os y momentos compartidos, Steven y yo hemos decidido unir nuestras vidas para siempre.
                   </p>
 
                   {config?.mostrarEvento !== false && (
-                    <div className="event-details text-body">
-                      <strong className="event-line" style={{ fontSize: '1.1rem', color: 'var(--color-text-main)' }}>
-                        <span aria-hidden="true">📅</span>
-                        {config?.fecha || 'Sábado, 1 de Agosto 2026'}
-                      </strong>
-                      <span className="event-line">
-                        <span aria-hidden="true">⛪</span>
-                        {config?.lugar || 'Iglesia Católica Santo Tomás Moro'}
-                      </span>
-                      <span className="event-line">
-                        <span aria-hidden="true">🕕</span>
-                        {config?.hora || '18:00 hrs'}
-                      </span>
-                    </div>
+                    <>
+                      <p className="text-body invitation-note" style={{ margin: '26px auto 0', fontSize: '1.08rem' }}>
+                        <strong>&#161;El d&#237;a especial est&#225; cada vez m&#225;s cerca!</strong>
+                      </p>
+
+                      <div className="event-details text-body">
+                        <strong className="event-line" style={{ fontSize: '1.1rem', color: 'var(--color-text-main)' }}>
+                          <span aria-hidden="true">📅</span>
+                          {config?.fecha || 'Sábado, 1 de Agosto 2026'}
+                        </strong>
+                        <span className="event-line">
+                          <span aria-hidden="true">⛪</span>
+                          {config?.lugar || 'Iglesia Católica Santo Tomás Moro'}
+                        </span>
+                        <span className="event-line">
+                          <span aria-hidden="true">🕕</span>
+                          {config?.hora || '18:00 hrs'}
+                        </span>
+                      </div>
+                    </>
                   )}
+
+                  <p className="text-body invitation-guest" style={{ margin: '24px 0 0' }}>
+                    <strong style={{ fontSize: '1.7rem', color: 'var(--color-primary)', fontFamily: 'var(--font-title)' }}>{guestName}</strong>
+                  </p>
 
                   <RSVPForm allowsPartner={allowsPartner} guestId={guestId} />
                 </div>
