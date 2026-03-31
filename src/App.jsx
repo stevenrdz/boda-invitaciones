@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BrowserRouter as Router, useSearchParams } from 'react-router-dom';
 import RSVPForm from './components/RSVPForm';
-import collageBackground from '../collage3.jpeg';
+import collageBackground from '../collage4.jpeg';
 import './index.css';
 
 const DEFAULT_BACKGROUND_URL = collageBackground;
