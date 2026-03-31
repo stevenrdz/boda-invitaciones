@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BrowserRouter as Router, useSearchParams } from 'react-router-dom';
 import RSVPForm from './components/RSVPForm';
+import collageBackground from '../collage.png';
 import './index.css';
 
-const DEFAULT_BACKGROUND_URL = 'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+const DEFAULT_BACKGROUND_URL = collageBackground;
 
 function InvitationContent() {
   const [searchParams] = useSearchParams();
@@ -50,7 +51,7 @@ function InvitationContent() {
           setGuestName(data.name);
           setAllowsPartner(data.allowsPartner);
           const nextConfig = data.config || null;
-          const nextBackgroundUrl = nextConfig?.fondoUrl?.trim() || DEFAULT_BACKGROUND_URL;
+          const nextBackgroundUrl = DEFAULT_BACKGROUND_URL;
 
           await preloadImage(nextBackgroundUrl);
           if (!isActive) return;
