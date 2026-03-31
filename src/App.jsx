@@ -4,6 +4,8 @@ import { BrowserRouter as Router, useSearchParams } from 'react-router-dom';
 import RSVPForm from './components/RSVPForm';
 import './index.css';
 
+const DEFAULT_BACKGROUND_URL = 'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+
 function InvitationContent() {
   const [searchParams] = useSearchParams();
   const guestId = searchParams.get('id');
@@ -13,15 +15,32 @@ function InvitationContent() {
   const [allowsPartner, setAllowsPartner] = useState(true);
   const [loading, setLoading] = useState(true);
   const [config, setConfig] = useState(null);
+  const [backgroundUrl, setBackgroundUrl] = useState(DEFAULT_BACKGROUND_URL);
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false);
 
   useEffect(() => {
+    let isActive = true;
+
+    const preloadImage = url => new Promise(resolve => {
+      const img = new Image();
+      img.src = url;
+      img.onload = resolve;
+      img.onerror = resolve;
+    });
+
     async function fetchGuest() {
+      setLoading(true);
+
       if (!guestId) {
         setGuestName('Nuestra Invitada Especial');
-        setTimeout(() => setLoading(false), 1000); // Simulamos carga si no hay ID
+        setConfig(null);
+        setBackgroundUrl(DEFAULT_BACKGROUND_URL);
+        setTimeout(() => {
+          if (isActive) setLoading(false);
+        }, 1000);
         return;
       }
+
       try {
         const scriptUrl = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
         const res = await fetch(`${scriptUrl}?id=${guestId}`);
@@ -30,28 +49,34 @@ function InvitationContent() {
           if (data.error) throw new Error(data.error);
           setGuestName(data.name);
           setAllowsPartner(data.allowsPartner);
-          if (data.config) {
-            setConfig(data.config);
-            if (data.config.fondoUrl) {
-              const img = new Image();
-              img.src = data.config.fondoUrl.trim();
-              await new Promise(resolve => {
-                img.onload = resolve;
-                img.onerror = resolve;
-              });
-            }
-          }
+          const nextConfig = data.config || null;
+          const nextBackgroundUrl = nextConfig?.fondoUrl?.trim() || DEFAULT_BACKGROUND_URL;
+
+          await preloadImage(nextBackgroundUrl);
+          if (!isActive) return;
+
+          setConfig(nextConfig);
+          setBackgroundUrl(nextBackgroundUrl);
         } else {
           setGuestName(guestId.charAt(0).toUpperCase() + guestId.slice(1));
+          setConfig(null);
+          setBackgroundUrl(DEFAULT_BACKGROUND_URL);
         }
       } catch (e) {
         console.error(e);
         setGuestName(guestId.charAt(0).toUpperCase() + guestId.slice(1));
+        setConfig(null);
+        setBackgroundUrl(DEFAULT_BACKGROUND_URL);
       } finally {
-        setLoading(false);
+        if (isActive) setLoading(false);
       }
     }
+
     fetchGuest();
+
+    return () => {
+      isActive = false;
+    };
   }, [guestId]);
 
   return (
@@ -80,7 +105,7 @@ function InvitationContent() {
       {/* Siempre cargado en el DOM, pero detrás del loader hasta que esté listo */}
       <div
         className="background-image"
-        style={config?.fondoUrl ? { backgroundImage: `url('${config.fondoUrl}')` } : {}}
+        style={{ backgroundImage: `url('${backgroundUrl}')` }}
       ></div>
 
       {!loading && (
