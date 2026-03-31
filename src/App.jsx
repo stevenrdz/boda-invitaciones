@@ -12,7 +12,7 @@ function InvitationContent() {
   const guestId = searchParams.get('id');
   const MotionDiv = motion.div;
 
-  const [guestName, setGuestName] = useState('Nuestra Invitada Especial');
+  const [guestName, setGuestName] = useState('Nuestra invitada especial');
   const [allowsPartner, setAllowsPartner] = useState(true);
   const [loading, setLoading] = useState(true);
   const [config, setConfig] = useState(null);
@@ -33,7 +33,7 @@ function InvitationContent() {
       setLoading(true);
 
       if (!guestId) {
-        setGuestName('Nuestra Invitada Especial');
+        setGuestName('Nuestra invitada especial');
         setConfig(null);
         setBackgroundUrl(DEFAULT_BACKGROUND_URL);
         setTimeout(() => {
@@ -129,23 +129,23 @@ function InvitationContent() {
                   <h1 className="title-accent" style={{ fontSize: '4.2rem', marginTop: '10px' }}>¡Me caso!</h1>
 
                   <p className="text-body invitation-lead" style={{ margin: '18px auto 0', fontSize: '1.18rem' }}>
-                    <strong>💍 Una nueva etapa est&#225; por comenzar</strong>
+                    <strong>💍 Una nueva etapa está por comenzar</strong>
                   </p>
 
                   <p className="text-body invitation-intro" style={{ margin: '12px auto 0', fontSize: '1.15rem' }}>
-                    Despu&#233;s de tantas historias, sue&#241;os y momentos compartidos, Steven y yo hemos decidido unir nuestras vidas para siempre.
+                    Después de tantas historias, sueños y momentos compartidos, Steven y yo hemos decidido unir nuestras vidas para siempre.
                   </p>
 
                   {config?.mostrarEvento !== false && (
                     <>
                       <p className="text-body invitation-note" style={{ margin: '26px auto 0', fontSize: '1.08rem' }}>
-                        <strong>&#161;El d&#237;a especial est&#225; cada vez m&#225;s cerca!</strong>
+                        <strong>¡El día especial está cada vez más cerca!</strong>
                       </p>
 
                       <div className="event-details text-body">
                         <strong className="event-line" style={{ fontSize: '1.1rem', color: 'var(--color-text-main)' }}>
                           <span aria-hidden="true">📅</span>
-                          {config?.fecha || 'Sábado, 1 de Agosto 2026'}
+                          {config?.fecha || 'sábado, 1 de agosto de 2026'}
                         </strong>
                         <span className="event-line">
                           <span aria-hidden="true">⛪</span>
@@ -153,7 +153,7 @@ function InvitationContent() {
                         </span>
                         <span className="event-line">
                           <span aria-hidden="true">🕕</span>
-                          {config?.hora || '18:00 hrs'}
+                          {config?.hora || '18:00 h'}
                         </span>
                       </div>
                     </>

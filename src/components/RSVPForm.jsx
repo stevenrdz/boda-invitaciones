@@ -39,7 +39,7 @@ export default function RSVPForm({ allowsPartner, guestId, onConfirm }) {
             if (onConfirm) onConfirm();
         } catch (error) {
             console.error(error);
-            setErrorMsg('Ocurrió un error guardando tus respuestas. Por favor reintenta.');
+            setErrorMsg('Ocurrió un error al guardar tus respuestas. Por favor, reinténtalo.');
             setStep(isDama ? (partnerData?.hasPartner === 'yes' ? 'partner_form' : 'partner') : 'question');
         }
     };
@@ -84,11 +84,11 @@ export default function RSVPForm({ allowsPartner, guestId, onConfirm }) {
                         style={{ width: '100%' }}
                     >
                         <p className="text-body invitation-question-copy" style={{ fontSize: '1.12rem', marginBottom: '22px' }}>
-                            Este d&#237;a ser&#225; uno de los m&#225;s importantes de mi vida, y no podr&#237;a imaginarlo sin alguien tan especial como t&#250; acompa&#241;&#225;ndome. Porque eres parte de mi historia, de mis recuerdos y de mi coraz&#243;n... Por eso quiero preguntarte algo muy especial:
+                            Este día será uno de los más importantes de mi vida, y no podría imaginarlo sin alguien tan especial como tú acompañándome. Porque eres parte de mi historia, de mis recuerdos y de mi corazón... Por eso quiero preguntarte algo muy especial:
                         </p>
 
                         <h3 className="title-main" style={{ fontSize: '1.5rem', marginBottom: '25px', color: 'var(--color-primary)' }}>
-                            &#191;Aceptas ser mi Dama de Honor y estar a mi lado en este d&#237;a tan importante?
+                            ¿Aceptas ser mi Dama de Honor y estar a mi lado en este día tan importante?
                         </h3>
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                             <button onClick={handleAccept} className="btn-primary">
@@ -111,7 +111,7 @@ export default function RSVPForm({ allowsPartner, guestId, onConfirm }) {
                         style={{ width: '100%' }}
                     >
                         <p className="text-body" style={{ fontSize: '1.15rem', marginBottom: '25px' }}>
-                            ¡Qué gran emoción! Ahora para organizar la logística...
+                            ¡Qué gran emoción! Ahora, pasemos a organizar la logística...
                         </p>
                         <h3 className="title-main" style={{ fontSize: '1.4rem', marginBottom: '25px', color: 'var(--color-primary)' }}>
                             ¿Asistirás a la boda con un acompañante?
@@ -163,7 +163,7 @@ export default function RSVPForm({ allowsPartner, guestId, onConfirm }) {
                             />
                         </div>
                         <div className="form-group">
-                            <label className="form-label">Teléfono Celular (Para logística)</label>
+                            <label className="form-label">Teléfono celular (para logística)</label>
                             <input
                                 type="tel"
                                 className="form-input"
@@ -175,7 +175,7 @@ export default function RSVPForm({ allowsPartner, guestId, onConfirm }) {
                             />
                         </div>
                         <button type="submit" className="btn-primary" style={{ marginTop: '10px' }}>
-                            Completar Registro
+                            Completar registro
                         </button>
                     </MotionForm>
                 )}
