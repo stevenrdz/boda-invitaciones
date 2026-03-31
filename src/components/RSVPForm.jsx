@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function RSVPForm({ allowsPartner, guestId, guestName, onConfirm }) {
+export default function RSVPForm({ allowsPartner, guestId, onConfirm }) {
+    const MotionDiv = motion.div;
+    const MotionForm = motion.form;
     // steps: 'question' -> 'partner' -> 'partner_form' -> 'submitting' -> 'success_yes' / 'success_no'
     const [step, setStep] = useState('question');
-    const [hasPartner, setHasPartner] = useState(null); // 'yes' | 'no'
     const [partnerDetails, setPartnerDetails] = useState({ name: '', lastname: '', phone: '' });
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -56,7 +57,6 @@ export default function RSVPForm({ allowsPartner, guestId, guestName, onConfirm 
     };
 
     const handlePartnerSelect = (choice) => {
-        setHasPartner(choice);
         if (choice === 'no') {
             submitToGoogle(true, { hasPartner: 'no' });
         } else {
@@ -75,7 +75,7 @@ export default function RSVPForm({ allowsPartner, guestId, guestName, onConfirm 
 
             <AnimatePresence mode="wait">
                 {step === 'question' && (
-                    <motion.div
+                    <MotionDiv
                         key="question"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -97,11 +97,11 @@ export default function RSVPForm({ allowsPartner, guestId, guestName, onConfirm 
                                 Lamentablemente no podré
                             </button>
                         </div>
-                    </motion.div>
+                    </MotionDiv>
                 )}
 
                 {step === 'partner' && (
-                    <motion.div
+                    <MotionDiv
                         key="partner"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -123,11 +123,11 @@ export default function RSVPForm({ allowsPartner, guestId, guestName, onConfirm 
                                 Iré sola a disfrutar
                             </button>
                         </div>
-                    </motion.div>
+                    </MotionDiv>
                 )}
 
                 {step === 'partner_form' && (
-                    <motion.form
+                    <MotionForm
                         key="partner_form"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -176,11 +176,11 @@ export default function RSVPForm({ allowsPartner, guestId, guestName, onConfirm 
                         <button type="submit" className="btn-primary" style={{ marginTop: '10px' }}>
                             Completar Registro
                         </button>
-                    </motion.form>
+                    </MotionForm>
                 )}
 
                 {step === 'submitting' && (
-                    <motion.div
+                    <MotionDiv
                         key="submitting"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -188,11 +188,11 @@ export default function RSVPForm({ allowsPartner, guestId, guestName, onConfirm 
                     >
                         <span className="spinner"></span>
                         <p className="text-body" style={{ marginTop: '20px' }}>Guardando tu respuesta...</p>
-                    </motion.div>
+                    </MotionDiv>
                 )}
 
                 {step === 'success_yes' && (
-                    <motion.div
+                    <MotionDiv
                         key="success_yes"
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -203,11 +203,11 @@ export default function RSVPForm({ allowsPartner, guestId, guestName, onConfirm 
                         <p className="text-body" style={{ fontSize: '1.15rem' }}>
                             ¡Prepárate para vivir juntas el mejor día de mi vida! Gracias por aceptar ser mi Dama de Honor.
                         </p>
-                    </motion.div>
+                    </MotionDiv>
                 )}
 
                 {step === 'success_no' && (
-                    <motion.div
+                    <MotionDiv
                         key="success_no"
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -218,7 +218,7 @@ export default function RSVPForm({ allowsPartner, guestId, guestName, onConfirm 
                         <p className="text-body" style={{ fontSize: '1.15rem' }}>
                             Lo entiendo perfectamente. Aún así me encantará verte en la boda para celebrar a lo grande.
                         </p>
-                    </motion.div>
+                    </MotionDiv>
                 )}
             </AnimatePresence>
         </div>

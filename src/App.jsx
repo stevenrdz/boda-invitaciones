@@ -7,6 +7,7 @@ import './index.css';
 function InvitationContent() {
   const [searchParams] = useSearchParams();
   const guestId = searchParams.get('id');
+  const MotionDiv = motion.div;
 
   const [guestName, setGuestName] = useState('Nuestra Invitada Especial');
   const [allowsPartner, setAllowsPartner] = useState(true);
@@ -57,7 +58,7 @@ function InvitationContent() {
     <>
       <AnimatePresence>
         {loading && (
-          <motion.div
+          <MotionDiv
             key="fullscreen-loader"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -72,7 +73,7 @@ function InvitationContent() {
             <p className="text-body" style={{ marginTop: '20px', color: 'var(--color-text-main)', fontSize: '1.2rem' }}>
               Abriendo invitación...
             </p>
-          </motion.div>
+          </MotionDiv>
         )}
       </AnimatePresence>
 
@@ -126,7 +127,7 @@ function InvitationContent() {
                     </div>
                   )}
 
-                  <RSVPForm allowsPartner={allowsPartner} guestId={guestId} guestName={guestName} />
+                  <RSVPForm allowsPartner={allowsPartner} guestId={guestId} />
                 </div>
               </div>
             </div>
