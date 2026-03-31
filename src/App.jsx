@@ -129,7 +129,7 @@ function InvitationContent() {
                   <h1 className="title-accent" style={{ fontSize: '4.2rem', marginTop: '10px' }}>¡Me caso!</h1>
 
                   <p className="text-body invitation-lead" style={{ margin: '18px auto 0', fontSize: '1.18rem' }}>
-                    <strong>Una nueva etapa est&#225; por comenzar</strong>
+                    <strong>💍 Una nueva etapa est&#225; por comenzar</strong>
                   </p>
 
                   <p className="text-body invitation-intro" style={{ margin: '12px auto 0', fontSize: '1.15rem' }}>
